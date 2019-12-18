@@ -15,7 +15,7 @@
 - name: Configure keygrip
   template:
     src: sshcontrol.j2
-    dest: ~/.gnupg/sshcontrol.j2
+    dest: ~/.gnupg/sshcontrol
 
 - name: Configure gpg-agent
   template:

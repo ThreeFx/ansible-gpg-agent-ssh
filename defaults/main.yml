@@ -1,0 +1,2 @@
+---
+gpg_agent_ssh_keygrip: "" # required, keygrip for the SSH key

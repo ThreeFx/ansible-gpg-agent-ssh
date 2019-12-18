@@ -1,0 +1,28 @@
+---
+- name: Fail when no keygrip defined
+  fail:
+    msg: "You have to define gpg_agent_ssh_keygrip!"
+  when: gpg_agent_ssh_keygrip | length == 0
+
+- name: Install dependencies
+  become: True
+  apt:
+    package:
+      - scdaemon
+      - gpg-agent
+      - pcscd
+
+- name: Configure keygrip
+  template:
+    src: sshcontrol.j2
+    dest: ~/.gnupg/sshcontrol.j2
+
+- name: Configure gpg-agent
+  template:
+    src: gpg-agent.j2
+    dest: ~/.gnupg/gpg-agent.conf
+
+- name: Configure zsh
+  template:
+    src: zsh.j2
+    dest: ~/.zshrc.d/90-gnupg-agent
